@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imóveis 10 | Vera Cardoso Soluções em Imóveis – Limeira/SP</title>
+<meta name="description" content="Imóveis 10 – Vera Cardoso Soluções em Imóveis. Venda, locação, permuta e administração de imóveis em Limeira/SP e região. CRECI 148625.">
+<meta property="og:title" content="Imóveis 10 – Onde seu sonho encontra um endereço">
+<meta property="og:description" content="Casas, apartamentos, terrenos e imóveis comerciais em Limeira/SP e região.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header id="top">
+  <div class="container nav">
+    <a href="#inicio" class="logo" aria-label="Imóveis 10 - início">
+      <div class="logo-badge">10</div>
+      <div class="logo-text"><strong>Imóveis 10</strong><span>Vera Cardoso</span></div>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#imoveis">Imóveis</a>
+      <a href="#sobre">Quem somos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Contato</a>
+      <a class="btn btn-gold" data-wa href="#"><svg><use href="#i-wa"/></svg>Fale conosco</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow" style="color:var(--gold-2)">Limeira/SP e região · CRECI 148625</span>
+      <h1>Onde seu sonho encontra <em>um endereço.</em></h1>
+      <p>Casas, apartamentos, terrenos e imóveis comerciais selecionados a dedo, com atendimento próximo, honesto e seguro do início ao fim.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#imoveis">Ver imóveis disponíveis</a>
+        <a class="btn btn-ghost" data-wa="Olá, quero agendar uma visita!" href="#"><svg><use href="#i-wa"/></svg>Agendar visita</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>+15</strong><span>anos de mercado</span></div>
+        <div><strong>5,0 ★</strong><span>nota no Google</span></div>
+        <div><strong id="stat-count">+28</strong><span>imóveis disponíveis</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container finder">
+  <form class="finder-card reveal" id="finder">
+    <div>
+      <label for="f-op">Quero</label>
+      <select id="f-op"><option value="todos">Comprar ou alugar</option><option value="venda">Comprar</option><option value="aluguel">Alugar</option></select>
+    </div>
+    <div>
+      <label for="f-tipo">Tipo de imóvel</label>
+      <select id="f-tipo"><option value="todos">Todos os tipos</option><option value="casa">Casa</option><option value="apartamento">Apartamento</option><option value="terreno">Terreno</option><option value="comercial">Comercial / Galpão</option></select>
+    </div>
+    <div>
+      <label for="f-bairro">Bairro ou cidade</label>
+      <select id="f-bairro"><option value="todos">Qualquer região</option></select>
+    </div>
+    <button class="btn btn-gold" type="submit">Buscar imóveis</button>
+  </form>
+</div>
+
+<section class="section" id="imoveis">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nossos imóveis</span>
+      <h2>Imóveis que vão fazer você se apaixonar</h2>
+      <p>Clique em <strong>Ver detalhes</strong> para ver todas as fotos e informações, ou fale direto com a gente pelo WhatsApp.</p>
+    </div>
+    <div class="filters reveal" id="chips">
+      <button class="chip active" data-f="todos">Todos</button>
+      <button class="chip" data-f="venda">À venda</button>
+      <button class="chip" data-f="aluguel">Para alugar</button>
+      <button class="chip" data-f="casa">Casas</button>
+      <button class="chip" data-f="apartamento">Apartamentos</button>
+      <button class="chip" data-f="terreno">Terrenos</button>
+      <button class="chip" data-f="comercial">Comercial</button>
+    </div>
+    <p class="count-note" id="count-note"></p>
+    <div class="grid" id="grid"></div>
+    <p id="empty" style="display:none;text-align:center;color:var(--muted);margin-top:20px">Nenhum imóvel com esse filtro agora, mas temos outras opções! <a data-wa="Olá! Estou procurando um imóvel e não encontrei no site." href="#" style="color:var(--gold-dark);font-weight:600">Pergunte no WhatsApp</a>.</p>
+    <div class="more">
+      <button class="btn btn-outline" id="ver-mais" type="button">Ver todos os imóveis</button>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="sobre">
+  <div class="container about-grid">
+    <div class="about-img vera-photo reveal">
+      <img src="assets/vera-cardoso.png" alt="Vera Cardoso, corretora de imóveis da Imóveis 10" loading="lazy">
+      <div class="badge"><strong>2010</strong><span>realizando sonhos</span></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--gold-2)">Quem somos</span>
+      <h2>Prazer, sou a <em>Vera Cardoso</em></h2>
+      <p>À frente da Imóveis 10 desde 2010, atuo com <strong style="color:#fff">honestidade, confiança e qualidade</strong> em consultoria, intermediação e administração imobiliária em Limeira e região.</p>
+      <p>Cada cliente é atendido de forma pessoal: entendo o que você procura, apresento opções que fazem sentido para a sua vida e acompanho toda a negociação até a entrega das chaves.</p>
+      <div class="values">
+        <div><strong>Honestidade</strong><span>transparência em cada etapa</span></div>
+        <div><strong>Confiança</strong><span>negócios rápidos e seguros</span></div>
+        <div><strong>Qualidade</strong><span>atenção a cada detalhe</span></div>
+      </div>
+      <div class="vera-sign"><strong>Vera Cardoso</strong><span>Corretora de imóveis · CRECI 148625</span></div>
+      <a class="btn btn-gold" style="margin-top:24px" data-wa="Olá, Vera! Vim pelo site e gostaria de conversar sobre imóveis." href="#"><svg><use href="#i-wa"/></svg>Falar com a Vera</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicos">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">O que fazemos</span>
+      <h2>Soluções completas para o seu imóvel</h2>
+    </div>
+    <div class="services">
+      <div class="service reveal"><div class="ico"><svg><use href="#i-home"/></svg></div><h3>Venda</h3><p>Encontramos o imóvel ideal para você ou o comprador certo para o seu, com a melhor avaliação.</p></div>
+      <div class="service reveal"><div class="ico"><svg><use href="#i-key"/></svg></div><h3>Locação</h3><p>Apartamentos, casas e salas para alugar com processo simples e ágil.</p></div>
+      <div class="service reveal"><div class="ico"><svg><use href="#i-swap"/></svg></div><h3>Permuta</h3><p>Quer trocar de imóvel? Intermediamos permutas com segurança jurídica.</p></div>
+      <div class="service reveal"><div class="ico"><svg><use href="#i-brief"/></svg></div><h3>Administração</h3><p>Cuidamos do seu imóvel alugado: cobranças, contratos e tranquilidade para o proprietário.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section regions">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Onde atuamos</span>
+      <h2>Limeira e região</h2>
+      <p>Conhecemos cada bairro e condomínio, o que nos ajuda a encontrar o lugar certo para você.</p>
+    </div>
+    <div class="region-list reveal">
+      <span>Centro</span><span>Terras de São Bento I e II</span><span>Villaggio San Pietro</span><span>Jardim dos Ipês</span><span>Jardim do Lago</span><span>Jardim Santo André</span><span>Residencial Rubi</span><span>Boa Vista</span><span>Jardim Esmeralda</span><span>Americana</span><span>Rio Claro</span><span>Cosmópolis</span><span>Engenheiro Coelho</span><span>Santa Bárbara d'Oeste</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="avaliacoes">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Avaliações</span>
+      <h2>Quem fechou negócio com a gente recomenda</h2>
+    </div>
+    <div class="reviews-top reveal"><strong>5,0</strong><span class="stars">★★★★★</span><span style="color:var(--muted)">21 avaliações no Google</span></div>
+    <div class="reviews">
+      <div class="review reveal"><span class="stars">★★★★★</span><p>“Excelente imobiliária, muito solícitos e honestos.”</p><small>Cliente · Google</small></div>
+      <div class="review reveal"><span class="stars">★★★★★</span><p>“O processo foi rápido e seguro, e estamos muito satisfeitos com o resultado.”</p><small>Cliente · Google</small></div>
+      <div class="review reveal"><span class="stars">★★★★★</span><p>“Ótimo atendimento, atencioso aos detalhes!!”</p><small>Cliente · Google</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="cta reveal">
+    <div>
+      <h2>Vamos encontrar o seu próximo endereço?</h2>
+      <p>Conte o que você procura: tipo de imóvel, bairro e orçamento. A gente faz a busca por você e agenda as visitas.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-wa" data-wa="Olá, estou procurando um imóvel!" href="#"><svg><use href="#i-wa"/></svg>Chamar no WhatsApp</a>
+      <a class="btn btn-ghost" data-wa="Olá, quero anunciar meu imóvel com a Imóveis 10." href="#">Quero anunciar meu imóvel</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contato">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contato</span>
+      <h2>Venha nos visitar</h2>
+      <p>Atendimento das 9h às 17h, mediante agendamento.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="info-list reveal">
+        <div class="info"><div class="ico"><svg><use href="#i-wa"/></svg></div><div><strong>WhatsApp</strong><a data-wa href="#">(19) 99745-0292</a></div></div>
+        <div class="info" data-email><div class="ico"><svg><use href="#i-mail"/></svg></div><div><strong>E-mail</strong><a href="#" data-email-text></a></div></div>
+        <div class="info"><div class="ico"><svg><use href="#i-pin"/></svg></div><div><strong>Endereço</strong><span>Rua Santa Cruz, 603 – Sala 10 – Centro<br>Limeira – SP, 13480-041</span></div></div>
+        <div class="info"><div class="ico"><svg><use href="#i-clock"/></svg></div><div><strong>Horário</strong><span>Das 9h às 17h, com agendamento prévio</span></div></div>
+        <div class="info"><div class="ico"><svg><use href="#i-home"/></svg></div><div><strong>Siga a Imóveis 10</strong>
+          <div class="socials">
+            <a class="social" data-wa href="#" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+            <a class="social" data-ig href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+            <a class="social" data-fb href="#" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+          </div></div></div>
+      </div>
+      <div class="map reveal">
+        <iframe src="https://www.google.com/maps?q=Rua+Santa+Cruz,+603,+Centro,+Limeira+-+SP,+13480-041&output=embed" loading="lazy" title="Mapa - Imóveis 10" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#inicio" class="logo"><div class="logo-badge">10</div><div class="logo-text"><strong>Imóveis 10</strong><span>Vera Cardoso Soluções em Imóveis</span></div></a>
+        <p style="margin-top:16px;max-width:360px">Venda, locação, permuta e administração de imóveis em Limeira/SP e região. CRECI 148625.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul><li><a href="#imoveis">Imóveis</a></li><li><a href="#sobre">Quem somos</a></li><li><a href="#servicos">Serviços</a></li><li><a href="#contato">Contato</a></li></ul>
+      </div>
+      <div>
+        <h4>Fale com a gente</h4>
+        <ul>
+          <li><a data-wa href="#">WhatsApp (19) 99745-0292</a></li>
+          <li data-email><a href="#"></a></li>
+          <li><a data-ig href="#">Instagram @imoveis10.com.br</a></li>
+          <li><a data-fb href="#">Facebook Imoveis.10</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year></span> Imóveis 10 – Vera Cardoso Soluções em Imóveis. Todos os direitos reservados.</span>
+      <span>CRECI 148625</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" data-wa href="#" aria-label="Falar no WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<script src="imoveis.js"></script>
+<script src="site.js"></script>
+<script>
+/* Destaques aparecem primeiro (códigos dos anúncios) */
+const DESTAQUES = ["2673733", "2627980", "1808576", "2068792", "2272875", "1808573", "2443279", "2971824", "2673732"];
+const lista = [...IM].sort((a, b) => {
+  const ia = DESTAQUES.indexOf(a.id), ib = DESTAQUES.indexOf(b.id);
+  return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+});
+const INICIAL = 9;
+const grid = document.getElementById("grid"), empty = document.getElementById("empty");
+const verMais = document.getElementById("ver-mais"), note = document.getElementById("count-note");
+let filtro = { op: "todos", tipo: "todos", local: "todos" }, expandido = false;
+
+document.getElementById("stat-count").textContent = "+" + IM.length;
+const locais = [...new Set(IM.map(i => i.cidade === "Limeira" ? i.bairro : i.cidade).filter(Boolean))].sort((a, b) => a.localeCompare(b, "pt"));
+document.getElementById("f-bairro").insertAdjacentHTML("beforeend", locais.map(l => `<option>${l}</option>`).join(""));
+
+function render() {
+  const ok = lista.filter(i =>
+    (filtro.op === "todos" || i.ops.includes(filtro.op)) &&
+    (filtro.tipo === "todos" || i.tipo === filtro.tipo) &&
+    (filtro.local === "todos" || i.bairro === filtro.local || i.cidade === filtro.local));
+  const visiveis = expandido ? ok : ok.slice(0, INICIAL);
+  grid.innerHTML = visiveis.map(cardHTML).join("");
+  empty.style.display = ok.length ? "none" : "block";
+  verMais.style.display = ok.length > visiveis.length ? "" : "none";
+  verMais.textContent = `Ver todos os ${ok.length} imóveis`;
+  note.textContent = ok.length ? `${ok.length} imóve${ok.length > 1 ? "is" : "l"} encontrado${ok.length > 1 ? "s" : ""}` : "";
+}
+verMais.addEventListener("click", () => { expandido = true; render(); });
+
+document.querySelectorAll(".chip").forEach(ch => ch.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x => x.classList.remove("active"));
+  ch.classList.add("active");
+  const f = ch.dataset.f;
+  filtro = { op: ["venda", "aluguel"].includes(f) ? f : "todos", tipo: ["venda", "aluguel", "todos"].includes(f) ? "todos" : f, local: "todos" };
+  expandido = false; render();
+}));
+document.getElementById("finder").addEventListener("submit", e => {
+  e.preventDefault();
+  document.querySelectorAll(".chip").forEach(x => x.classList.remove("active"));
+  filtro = { op: document.getElementById("f-op").value, tipo: document.getElementById("f-tipo").value, local: document.getElementById("f-bairro").value };
+  expandido = true; render();
+  document.getElementById("imoveis").scrollIntoView({ behavior: "smooth" });
+});
+
+render();
+preencherContatos();
+iniciarLayout();
+</script>
+</body>
+</html>

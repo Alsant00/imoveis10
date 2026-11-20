@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imóvel | Imóveis 10 – Vera Cardoso</title>
+<meta name="description" content="Detalhes do imóvel – Imóveis 10, Vera Cardoso Soluções em Imóveis. Limeira/SP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="solid">
+  <div class="container nav">
+    <a href="index.html" class="logo" aria-label="Imóveis 10 - início">
+      <div class="logo-badge">10</div>
+      <div class="logo-text"><strong>Imóveis 10</strong><span>Vera Cardoso</span></div>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="index.html#imoveis">Imóveis</a>
+      <a href="index.html#sobre">Quem somos</a>
+      <a href="index.html#servicos">Serviços</a>
+      <a href="index.html#contato">Contato</a>
+      <a class="btn btn-gold" data-wa href="#"><svg><use href="#i-wa"/></svg>Fale conosco</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<main class="container" id="app"></main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="logo"><div class="logo-badge">10</div><div class="logo-text"><strong>Imóveis 10</strong><span>Vera Cardoso Soluções em Imóveis</span></div></a>
+        <p style="margin-top:16px;max-width:360px">Venda, locação, permuta e administração de imóveis em Limeira/SP e região. CRECI 148625.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul><li><a href="index.html#imoveis">Imóveis</a></li><li><a href="index.html#sobre">Quem somos</a></li><li><a href="index.html#servicos">Serviços</a></li><li><a href="index.html#contato">Contato</a></li></ul>
+      </div>
+      <div>
+        <h4>Fale com a gente</h4>
+        <ul>
+          <li><a data-wa href="#">WhatsApp</a></li>
+          <li data-email><a href="#"></a></li>
+          <li><a data-ig href="#">Instagram @imoveis10.com.br</a></li>
+          <li><a data-fb href="#">Facebook Imoveis.10</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year></span> Imóveis 10 – Vera Cardoso Soluções em Imóveis.</span>
+      <span>CRECI 148625</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lb" role="dialog" aria-label="Fotos do imóvel">
+  <img id="lb-img" alt="">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Foto anterior"><svg><use href="#i-left"/></svg></button>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Próxima foto"><svg><use href="#i-right"/></svg></button>
+  <span class="lb-count" id="lb-count"></span>
+</div>
+
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<script src="imoveis.js"></script>
+<script src="site.js"></script>
+<script>
+const id = new URLSearchParams(location.search).get("id");
+const im = IM.find(x => x.id === id);
+const app = document.getElementById("app");
+
+function formatarDescricao(t) {
+  t = (t || "")
+    .replace(/DESCRI[CÇ][AÃ]O DO IM[OÓ]VEL/gi, "\n")
+    .replace(/INFORMA[^\s]*ES GERAIS\.?/gi, "\n")
+    .replace(/\(?\b19\)?\s?9?\s?9745-?0292\b/g, "")
+    .replace(/[a-zà-ú0-9]{22,}/g, "")
+    .replace(/([a-zà-ú.):!²])([A-ZÀ-Ú][a-zà-ú])/g, "$1\n$2")
+    .replace(/([A-ZÀ-Ú]{3,})([A-ZÀ-Ú][a-zà-ú])/g, "$1\n$2");
+  const partes = t.split(/[\n;]+|\.\s(?=[A-ZÀ-Ú0-9])/).map(s => s.trim().replace(/^[-•*.\s]+/, "")).filter(s => s.length > 2);
+  let html = "", lista = [];
+  const flush = () => { if (lista.length) { html += "<ul>" + lista.map(l => `<li>${l}</li>`).join("") + "</ul>"; lista = []; } };
+  partes.forEach(p => {
+    if (p.length <= 70) lista.push(p);
+    else { flush(); html += `<p>${p}</p>`; }
+  });
+  flush();
+  return html;
+}
+
+if (!im) {
+  app.innerHTML = `<div class="notfound"><h1 style="color:var(--navy)">Imóvel não encontrado</h1><p style="color:var(--muted);margin:14px 0 26px">Esse anúncio pode ter sido vendido ou alugado.</p><a class="btn btn-gold" href="index.html#imoveis">Ver todos os imóveis</a></div>`;
+} else {
+  document.title = `${im.titulo} – ${im.bairro}, ${im.cidade} | Imóveis 10`;
+  const p = precoPrincipal(im);
+  const fotos = im.fotos;
+  const n = Math.min(fotos.length, 5);
+  const gclass = fotos.length === 1 ? "g1" : fotos.length < 5 ? "g" + Math.min(fotos.length, 4) : "";
+  const shown = fotos.length < 5 ? fotos.slice(0, Math.min(fotos.length, 3)) : fotos.slice(0, 5);
+  const specs = [
+    im.area && ["i-area", im.area + " m²", "Área"],
+    im.quartos && ["i-bed", im.quartos, im.quartos > 1 ? "Quartos" : "Quarto"],
+    im.suites && ["i-star", im.suites, im.suites > 1 ? "Suítes" : "Suíte"],
+    im.banheiros && ["i-bath", im.banheiros, im.banheiros > 1 ? "Banheiros" : "Banheiro"],
+    im.vagas && ["i-car", im.vagas, im.vagas > 1 ? "Vagas" : "Vaga"],
+  ].filter(Boolean);
+  const sim = semelhantes(im, 4);
+  const opTxt = im.ops.length > 1 ? "venda ou locação" : im.ops[0] === "aluguel" ? "locação" : "venda";
+
+  app.innerHTML = `
+    <div class="crumbs"><a href="index.html">Início</a> › <a href="index.html#imoveis">Imóveis</a> › ${im.rotulo}</div>
+    <div class="detail-head">
+      <div>
+        <h1>${im.titulo}</h1>
+        <div class="loc"><svg><use href="#i-pin"/></svg>${im.bairro}, ${im.cidade} – SP</div>
+      </div>
+      <span class="code">Código ${im.id} · ${opTxt}</span>
+    </div>
+
+    <div class="gallery ${gclass}">
+      ${shown.map((f, k) => `<button data-i="${k}" aria-label="Ampliar foto ${k + 1}"><img src="${f}" alt="${im.titulo} – foto ${k + 1}" ${k ? 'loading="lazy"' : ""}>${k === shown.length - 1 ? `<span class="all">Ver as ${fotos.length} fotos</span>` : ""}</button>`).join("")}
+    </div>
+    <div class="thumbs">${fotos.map((f, k) => `<button data-i="${k}" aria-label="Foto ${k + 1}"><img src="${f}" alt="" loading="lazy"></button>`).join("")}</div>
+
+    <div class="detail-grid">
+      <div>
+        ${specs.length ? `<div class="panel"><h2>Características</h2><div class="specs">${specs.map(s => `<div class="spec"><svg><use href="#${s[0]}"/></svg><strong>${s[1]}</strong><span>${s[2]}</span></div>`).join("")}</div></div>` : ""}
+        <div class="panel desc"><h2>Sobre o imóvel</h2>${formatarDescricao(im.descricao)}</div>
+        <div class="panel"><h2>Localização</h2>
+          <div class="map" style="min-height:320px"><iframe style="min-height:320px" src="https://www.google.com/maps?q=${encodeURIComponent(im.bairro + ", " + im.cidade + " - SP")}&output=embed" loading="lazy" title="Mapa da região do imóvel"></iframe></div>
+          <p style="color:var(--muted);font-size:.88rem;margin-top:10px">Mapa aproximado da região. Endereço exato informado no agendamento da visita.</p>
+        </div>
+      </div>
+      <aside class="side">
+        <div class="panel">
+          <div class="price"><small>${p.label}</small><strong>${p.valor}</strong>${p.extra ? `<em>${p.extra}</em>` : ""}</div>
+          <a class="btn btn-wa" href="${waImovel(im)}" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Tenho interesse</a>
+          <a class="btn btn-gold" href="${waURL(`Olá! Quero agendar uma visita ao imóvel "${im.titulo}" (${im.bairro}) – código ${im.id}.`)}" target="_blank" rel="noopener">Agendar visita</a>
+          <button class="btn btn-outline" id="share"><svg><use href="#i-share"/></svg>Compartilhar</button>
+          <div class="agent">
+            <img src="assets/vera-cardoso.png" alt="Vera Cardoso">
+            <div><strong>Vera Cardoso</strong><span>Corretora de imóveis · CRECI 148625</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    ${sim.length ? `<section class="similar">
+      <h2>Imóveis semelhantes</h2>
+      <p>Outras opções de ${im.tipo === "comercial" ? "galpões e pontos comerciais" : im.tipo === "terreno" ? "terrenos" : im.tipo === "casa" ? "casas" : "apartamentos"} que podem te interessar.</p>
+      <div class="grid">${sim.map(cardHTML).join("")}</div>
+    </section>` : ""}
+  `;
+
+  document.getElementById("wa-float").href = waImovel(im);
+
+  // Lightbox
+  const lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img"), lbCount = document.getElementById("lb-count");
+  let cur = 0;
+  const show = k => { cur = (k + fotos.length) % fotos.length; lbImg.src = fotos[cur]; lbCount.textContent = `${cur + 1} / ${fotos.length}`; };
+  const open = k => { show(k); lb.classList.add("open"); document.body.style.overflow = "hidden"; };
+  const close = () => { lb.classList.remove("open"); document.body.style.overflow = ""; };
+  app.querySelectorAll(".gallery button, .thumbs button").forEach(b => b.addEventListener("click", () => open(+b.dataset.i)));
+  document.getElementById("lb-prev").onclick = () => show(cur - 1);
+  document.getElementById("lb-next").onclick = () => show(cur + 1);
+  document.getElementById("lb-close").onclick = close;
+  lb.addEventListener("click", e => { if (e.target === lb) close(); });
+  addEventListener("keydown", e => { if (!lb.classList.contains("open")) return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+  let x0 = null;
+  lb.addEventListener("touchstart", e => x0 = e.touches[0].clientX, { passive: true });
+  lb.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+
+  document.getElementById("share").onclick = async () => {
+    const data = { title: document.title, text: `${im.titulo} – ${im.bairro}, ${im.cidade}`, url: location.href };
+    if (navigator.share) { try { await navigator.share(data); } catch (e) {} }
+    else { try { await navigator.clipboard.writeText(location.href); document.getElementById("share").lastChild.textContent = "Link copiado!"; } catch (e) {} }
+  };
+}
+
+preencherContatos();
+iniciarLayout();
+</script>
+</body>
+</html>
